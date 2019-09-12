@@ -4,7 +4,9 @@ Trabajo Parcial de Complejidad Algoritmica
 Integrantes:
 
 -Carlos Obispo
+
 -Rodrigo Lozano
+
 -Sergio Villarruel
 
 SquareCubeGames©
