@@ -1,20 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# In[259]:
-
-
-get_ipython().run_line_magic('run', 'Rectangle.ipynb')
-
-
-# In[260]:
-
+import Rectangle
 
 def getline(line):
     return [str(n) for n in line.split(' ')]
-
-
-# In[294]:
 
 
 def set_var(array):
@@ -32,9 +20,6 @@ def set_var(array):
     return sheet_w,sheet_h,n,rectangles
 
 
-# In[295]:
-
-
 def Read(path):
     file = open(path,"r")
     f1=file.readlines()
@@ -44,13 +29,7 @@ def Read(path):
     return set_var(t)
 
 
-# In[299]:
 
-
-
-
-
-# In[ ]:
 
 
 
