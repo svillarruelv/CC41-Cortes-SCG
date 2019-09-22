@@ -2,7 +2,7 @@
 
 Trabajo Parcial para el curso de Complejidad Algorítmica de la carrera de Ingeniería de Software y Ciencias de la Computación de la Universidad Peruana de Ciencias Aplicadas (UPC)
 
-## HOW TO
+## How to
 
 Nuestro proyecto recibe archivos con extensión ".txt" los cuales DEBEN seguir el siguiente formato
 
@@ -34,22 +34,22 @@ TODO: MODULOS
 
 TODO:
 
-## Built With
+## Elaborado con
 
 * [Python] - El lenguaje de programación usado
 * [GitHub] - Hub de git
 * [GitKraken] - Interfaz gráfica para git
 * [VisualStudioCode] - Editor de código
 
-## Authors
+## Autores
 
 * **Sergio Villarruel** - *Trabajo Inicial* - [SergioVillarruel](https://github.com/SergioVillarruel)
 * **Rodrigo Lozano** - *Trabajo Inicial* - [RalcBK](https://github.com/RalcBK)
 * **Carlos Obispo** - *Trabajo Inicial* - [ZBishopM](https://github.com/ZBishopM)
 
-## License
+## Licencia
 
-This project is licensed by us. :)
+This project is licensed and finaced by us. :)
 
 ## Agradecimientos
 
