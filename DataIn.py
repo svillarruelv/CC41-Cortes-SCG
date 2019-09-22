@@ -4,7 +4,6 @@ import Rectangle
 def getline(line):
     return [str(n) for n in line.split(' ')]
 
-
 def set_var(array):
     sheet_w=int(array[0][0])
     sheet_h=int(array[0][1])
@@ -19,7 +18,6 @@ def set_var(array):
             rectangles.append(Rectangle(0,0,l+str(j+1),w,h))
     return sheet_w,sheet_h,n,rectangles
 
-
 def Read(path):
     """
     Función para leer un archivo y obtener los valores
@@ -31,7 +29,6 @@ def Read(path):
     for line in f1:
         t.append(getline(line))
     return set_var(t)
-
 
 
 
