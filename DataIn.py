@@ -21,6 +21,10 @@ def set_var(array):
 
 
 def Read(path):
+    """
+    Función para leer un archivo y obtener los valores
+    Devuelve Width de Plano, Height de Plano, Número de rectangulos y Arreglo de rectangulos
+    """
     file = open(path,"r")
     f1=file.readlines()
     t = []
