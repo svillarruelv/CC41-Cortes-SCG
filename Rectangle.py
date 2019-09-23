@@ -9,6 +9,8 @@ class Rectangle:
         self.area = w*h
         self.orientation = 0
         self.sheet = 0
+        self.xx = 0
+        self.yy = 0
 
 
 
