@@ -17,7 +17,7 @@ def merge_sorted_lists(list_left, list_right):
     list_len_target = len(list_left) + len(list_right)
 
     while len(list_merged) < list_len_target:
-        if list_left[index_left].area <= list_right[index_right].area:
+        if list_left[index_left].area >= list_right[index_right].area:
             list_merged.append(list_left[index_left])
             index_left += 1
         else:
@@ -45,9 +45,28 @@ def merge_sort(input_list):
 
 
 def fit(rectangle, actualx, actualy, W, H):
-    if (rectangle.w + actualx.xx < W):
-        if (rectangle.h < H):
-            return False
-        return True
-    elif():
-        return True
+    if (rectangle.w + actualx.xx <= W):
+        if (rectangle.h <= H):
+            return 1, rectangle
+    elif(rectangle.h + actualy.yy <= H):
+        if (rectangle.w <= W):
+            return 2, rectangle
+    
+    w_ = rectangle.w
+    rectangle.w = rectangle.h
+    rectangle.h = w_
+    rectangle.orientation = "G"
+
+    if (rectangle.w + actualx.xx <= W):
+        if (rectangle.h <= H):
+            return 1, rectangle
+    elif(rectangle.h + actualy.yy <= H):
+        if (rectangle.w <= W):
+            return 2, rectangle
+
+    w_ = rectangle.w
+    rectangle.w = rectangle.h
+    rectangle.h = w_
+    rectangle.orientation = "N"
+    
+    return 3, rectangle
