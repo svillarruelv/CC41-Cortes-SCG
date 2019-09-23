@@ -42,3 +42,12 @@ def merge_sort(input_list):
         left, right = split(input_list)
 
         return merge_sorted_lists(merge_sort(left), merge_sort(right))
+
+
+def fit(rectangle, actualx, actualy, W, H):
+    if (rectangle.w + actualx.xx < W):
+        if (rectangle.h < H):
+            return False
+        return True
+    elif():
+        return True
