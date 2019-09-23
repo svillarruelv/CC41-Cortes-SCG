@@ -1,7 +1,12 @@
 
 from Rectangle import Rectangle
+from tkinter import filedialog as fd
 
-def getline(line):
+def get_file():
+    filename = fd.askopenfilename()
+    return filename
+
+def get_line(line):
     return [str(n) for n in line.split(' ')]
 
 def set_var(array):
@@ -54,20 +59,18 @@ def set_var(array):
                 return 0,0,0,0
     return sheet_w,sheet_h,n,rectangles
 
-def Read(path):
+def Read():
     """
     Función para leer un archivo y obtener los valores correspondientes
     Devuelve Width de Plano, Height de Plano, Número de rectangulos y Arreglo de rectangulos
     """
+    path = get_file()
     file = open(path,"r")
     f1=file.readlines()
     t = []
     for line in f1:
-        t.append(getline(line))
+        t.append(get_line(line))
     return set_var(t)
-
-
-
 
 
 
