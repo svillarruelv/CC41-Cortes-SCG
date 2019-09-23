@@ -30,7 +30,7 @@ g.set_draws(W,H,rectangles)
 g.draw()
 """
 
-W, H, N, rectangles = di.Read("demo.txt")
+W, H, N, rectangles = di.Read()
 #u.merge_sort(rectangles)
 
 def guillotine(W, H, N, rectangles):
