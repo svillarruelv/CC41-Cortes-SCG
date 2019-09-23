@@ -27,7 +27,7 @@ def add_rectangle(x,y,w,h):
       (0., 0.),  # ignored
    ]
    path = Path(verts, codes)
-   patch = patches.PathPatch(path, facecolor='white',lw=2)
+   patch = patches.PathPatch(path, facecolor='yellow',lw=2)
    ax.add_patch(patch)
 
 def set_draws(W,H,array):
