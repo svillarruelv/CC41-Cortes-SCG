@@ -7,8 +7,8 @@ class Rectangle:
         self.w = w
         self.h = h
         self.area = w*h
-        self.orientation = 0
-        self.sheet = 0
+        self.orientation = "N"
+        self.sheet = 1
         self.xx = 0
         self.yy = 0
 
