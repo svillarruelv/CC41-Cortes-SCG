@@ -26,16 +26,15 @@ for i in range(len(b)):
 W = 720
 H = 670
 
+g.set_draws(W,H,rectangles)
+g.draw()
 """
 
 W, H, N, rectangles = di.Read("demo.txt")
-u.merge_sort(rectangles)
-
-g.set_draws(W,H,rectangles)
-
-g.draw()
+#u.merge_sort(rectangles)
 
 def guillotine(W, H, N, rectangles):
+    rectangles = u.merge_sort(rectangles)
 
     if (N < 1):
         g.set_draws(W, H, rectangles)
@@ -43,7 +42,6 @@ def guillotine(W, H, N, rectangles):
         return
     
     aux = rectangles[0]
-    rectangles = rectangles[1:]
 
     aux.x = 0
     aux.y = 0
@@ -53,12 +51,40 @@ def guillotine(W, H, N, rectangles):
     actualy = aux
 
     cutted = []
-    cutted.append(aux))
+    noncutted = []
+    cutted.append(aux)
 
-    for i in range len(rectangulos):
+    for i in range (1, len(rectangles)):
 
-        if (u.fit(rectangles[i]), actualx, actualy, W, H):
+        cut, rectangles[i] = u.fit(rectangles[i], actualx, actualy, W, H)
+        if (cut == 1):
+            rectangles[i].x=actualx.xx
+            rectangles[i].y=actualy.y
+            rectangles[i].xx=rectangles[i].w+rectangles[i].x
+            rectangles[i].yy=rectangles[i].h+rectangles[i].y
+            actualx=rectangles[i]
+            cutted.append(rectangles[i])
+        elif(cut == 2):
+            rectangles[i].x=aux.x
+            rectangles[i].y=actualy.yy
+            rectangles[i].xx=rectangles[i].w+rectangles[i].x
+            rectangles[i].yy=rectangles[i].h+rectangles[i].y
+            actualy=rectangles[i]
+            actualx=rectangles[i]
+            cutted.append(rectangles[i])
+        elif(cut==3):
+            noncutted.append(rectangles[i])
+            print("La pieza ", rectangles[i].label, " no ha sido cortada")
+
+    for i in range(len(rectangles)):
+        print(rectangles[i].label, rectangles[i].orientation)
+
+    for i in range(len(noncutted)):
+        print(noncutted[i].label)
+
+    #TODO: recursividad con el arreglo noncutted para terminar de acomodar las piezas en los espacios sobrantes
+    g.set_draws(W,H,cutted)
+    g.draw()
 
 
-
-    fit(aux, W, H)
+guillotine(W, H, N, rectangles)
