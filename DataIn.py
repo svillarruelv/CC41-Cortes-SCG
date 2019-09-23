@@ -66,8 +66,6 @@ def Read(path):
         t.append(getline(line))
     return set_var(t)
 
-Read("demo.txt")
-
 
 
 
