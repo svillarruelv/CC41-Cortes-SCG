@@ -3,7 +3,6 @@ def split(input_list):
     m = n // 2
     return input_list[:m], input_list[m:]
 
-
 def merge_sorted_lists(list_left, list_right):
 
     if len(list_left) == 0:
@@ -70,3 +69,4 @@ def fit(rectangle, actualx, actualy, W, H):
     rectangle.orientation = "N"
     
     return 3, rectangle
+
