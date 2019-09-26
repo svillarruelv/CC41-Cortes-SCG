@@ -12,7 +12,6 @@ RECTANGLES = u.merge_sort(RECTANGLES)
 
 order = 1
 CANVAS = c.Canvas(0, 0, W, H, order)
-#canvasused = []
 canvasnotused = []
 cutted = []
 noncutted = []
@@ -32,10 +31,20 @@ def cut(N, RECTANGLES, CANVAS):
                 rectangles[j].yy = rectangles[j].y+rectangles[j].h
                 rectangles[j].sheet = canvas.order
 
+                
+                #Corte inferior
                 c1 = c.Canvas(rectangles[j].xx, rectangles[j].y, 
                 canvas.w-rectangles[j].w, canvas.h, order)
                 c2 = c.Canvas(rectangles[j].x, rectangles[j].yy,
                 rectangles[j].w, canvas.h-rectangles[j].h, order)
+                
+                """
+                #Corte lateral
+                c1 = c.Canvas(rectangles[j].xx, rectangles[j].y, 
+                canvas.w-rectangles[j].w, rectangles[j].h, order)
+                c2 = c.Canvas(rectangles[j].x, rectangles[j].yy,
+                canvas.w, canvas.h-rectangles[j].h, order)
+                """
 
                 if not (rectangles[j] in cutted):
                     cutted.append(rectangles[j])
@@ -44,32 +53,20 @@ def cut(N, RECTANGLES, CANVAS):
                 divide(c1, rectangles)
                 divide(c2, rectangles)
                 
-                break
+                return
 
+        canvasnotused.append(canvas)
 
     divide(CANVAS, RECTANGLES)
+    uc.extra(W, H, canvasnotused, RECTANGLES, cutted)
+
+    for i in range(len(RECTANGLES)):
+        print(RECTANGLES[i].label)
 
     waste, area = uc.waste(W, H, canvasnotused)
-
     do.results(order, waste, area, cuts, cutted)
-
-    for i in range (len(noncutted)):
-        print (noncutted[i].label, noncutted[i].x, noncutted[i].y)
-
     g.set_draws(W, H, cutted)
     g.draw()
 
 
 cut(N, RECTANGLES, CANVAS)
-
-
-
-
-a = [0,1,2,3,4,5]
-
-a.remove(2)
-print(a[2])
-print()
-
-for i in range(len(a)):
-    print(a[i])
