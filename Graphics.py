@@ -34,7 +34,8 @@ def set_draws(n_planchas,W,H,array):
    fig, axs = plt.subplots(1,n_planchas)
 
    for i in range(len(axs)):
-      axs[i].set_plancha(W,H)
+      axs[i].set_xlim(-1,W)
+      axs[i].set_ylim(-1,H)
 
    for i in range(len(array)):
       x=array[i].x

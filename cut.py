@@ -10,17 +10,19 @@ import DataOut as do
 W, H, N, RECTANGLES = di.Read()
 RECTANGLES = u.merge_sort(RECTANGLES)
 
-order = 1
-CANVAS = c.Canvas(0, 0, W, H, order)
+ORDER = 1
+CANVAS = c.Canvas(0, 0, W, H, ORDER)
 canvasnotused = []
 cutted = []
 noncutted = []
 cuts = 0
 
-def cut(N, RECTANGLES, CANVAS):
+def cut(N, RECTANGLES, CANVAS, ORDER):
 
     def divide(canvas, rectangles):
-        if (len(rectangles)<1): return
+        if (len(rectangles)<1): 
+            canvasnotused.append(canvas)
+            return
         for j in range (len(rectangles)):
             flag, rectangles[j] = uc.fitin(canvas, rectangles[j])
             if (flag):
@@ -34,16 +36,16 @@ def cut(N, RECTANGLES, CANVAS):
                 
                 #Corte inferior
                 c1 = c.Canvas(rectangles[j].xx, rectangles[j].y, 
-                canvas.w-rectangles[j].w, canvas.h, order)
+                canvas.w-rectangles[j].w, canvas.h, ORDER)
                 c2 = c.Canvas(rectangles[j].x, rectangles[j].yy,
-                rectangles[j].w, canvas.h-rectangles[j].h, order)
+                rectangles[j].w, canvas.h-rectangles[j].h, ORDER)
                 
                 """
                 #Corte lateral
                 c1 = c.Canvas(rectangles[j].xx, rectangles[j].y, 
-                canvas.w-rectangles[j].w, rectangles[j].h, order)
+                canvas.w-rectangles[j].w, rectangles[j].h, ORDER)
                 c2 = c.Canvas(rectangles[j].x, rectangles[j].yy,
-                canvas.w, canvas.h-rectangles[j].h, order)
+                canvas.w, canvas.h-rectangles[j].h, ORDER)
                 """
 
                 if not (rectangles[j] in cutted):
@@ -58,15 +60,22 @@ def cut(N, RECTANGLES, CANVAS):
         canvasnotused.append(canvas)
 
     divide(CANVAS, RECTANGLES)
-    uc.extra(W, H, canvasnotused, RECTANGLES, cutted)
 
-    for i in range(len(RECTANGLES)):
-        print(RECTANGLES[i].label)
+    if RECTANGLES:
+        #tienen que ser de ese canvas
+        uc.extra(W, H, canvasnotused, RECTANGLES, cutted, ORDER)
 
-    waste, area = uc.waste(W, H, canvasnotused)
-    do.results(order, waste, area, cuts, cutted)
-    g.set_draws(W, H, cutted)
+    if RECTANGLES:
+        ORDER += 1
+        newcanvas = c.Canvas(0,0,W,H,ORDER)
+        cut(len(RECTANGLES), RECTANGLES, newcanvas, ORDER)
+        return
+
+
+    waste, area = uc.waste(W, H, canvasnotused, ORDER)
+    do.results(ORDER, waste, area, cuts, cutted)
+    g.set_draws(ORDER, W, H, cutted)
     g.draw()
 
 
-cut(N, RECTANGLES, CANVAS)
+cut(N, RECTANGLES, CANVAS, ORDER)

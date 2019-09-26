@@ -2,13 +2,14 @@ import Canvas as c
 import Rectangle as rec
 import math
 
-def waste(w, h, canvasnotused):
+def waste(w, h, canvasnotused, order):
     area = 0
     for i in range (len(canvasnotused)):
         area += (canvasnotused[i].w * canvasnotused[i].h)
 
-    waste = (area/(w*h))*100
+    waste = (area/((w*h)*order))*100
     waste = round(waste, 2)
+    area = round(area, 2)
     return waste, area
 
 
@@ -39,7 +40,7 @@ def collission(rectangle, cut):
     c_right = cut.xx
     c_top = cut.y
     c_bottom = cut.yy
-    return right >= c_left and left <= c_right and top >= c_bottom and bottom <= c_top 
+    return right > c_left and left < c_right and top < c_bottom and bottom > c_top 
         
 
 def borders(rectangle, w, h):
@@ -50,7 +51,7 @@ def borders(rectangle, w, h):
     return bottom > h or right > w
 
 
-def extra(W, H, canvases, rectangles, cutted):
+def extra(W, H, canvases, rectangles, cutted, order):
     for i in range (len(canvases)):
         for j in range (len(rectangles)):
             r = rec.Rectangle(canvases[i].x, canvases[i].y, rectangles[j].label, rectangles[j].w, rectangles[j].h)
@@ -59,18 +60,47 @@ def extra(W, H, canvases, rectangles, cutted):
             if not (borders(r, W, H)):
                 flag = True
                 for k in range (len(cutted)):
-                    if (collission(r,cutted[k])):
-                        flag = False
-                        break;
+                    if (cutted[k].sheet == order):    
+                        if (collission(r,cutted[k])):
+                            flag = False
+                            break
                 if (flag):
+                    r.sheet=order
                     cutted.append(r)
-                    
                     aux = (canvases[i].w+canvases[i].h)-(rectangles[j].w+rectangles[j].h)
-                    canvases[i].w = math.sqrt(aux)
-                    canvases[i].h = math.sqrt(aux)
+                    if (aux>0):
+                        canvases[i].w = round(math.sqrt(aux), 1)
+                        canvases[i].h = round(math.sqrt(aux), 1)
+                    canvases[i].x=r.x
+                    canvases[i].y=r.yy
 
                     rectangles.pop(j)
                     break
+            else:
+                #Turn around
+                aux = r.w
+                r.w = r.h
+                r.h = aux
+                if not (borders(r, W, H)):
+                    flag = True
+                    for k in range (len(cutted)):
+                        if (cutted[k].sheet == order):    
+                            if (collission(r,cutted[k])):
+                                flag = False
+                                break
+                    if (flag):
+                        cutted.append(r)
+                    
+                        aux = (canvases[i].w+canvases[i].h)-(rectangles[j].w+rectangles[j].h)
+                        if (aux>0):
+                            canvases[i].w = round(math.sqrt(aux), 1)
+                            canvases[i].h = round(math.sqrt(aux), 1)
+                        canvases[i].x=r.x
+                        canvases[i].y=r.yy
+
+                        rectangles.pop(j)
+                        break
+
 
 
 
