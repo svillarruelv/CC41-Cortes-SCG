@@ -2,7 +2,13 @@
 
 Trabajo Parcial para el curso de Complejidad Algorítmica de la carrera de Ingeniería de Software y Ciencias de la Computación de la Universidad Peruana de Ciencias Aplicadas (UPC)
 
-## How to
+Los problemas de optimización de empaquetamiento y el cortes son problemas NP. Estos algoritmos son actualmente muy dificiles de calcular debido a su alto tiempo de procesamiento. Existen soluciones que nos dan el mejor ordenamiento para un tiempo "x", más no el mejor de todos los posibles casos. Esto lo podemos decir en el caso donde existan multiples datos que procesar.
+
+Nuestro proyecto busca encontrar y dar una solucion al problema de cortes y empaquetamiento. Para llevar a acabo dicha tarea hemos realizado unas aplicaciones con ayuda del lenguaje de programacion Python, en donde hemos implementado algunas estrategias de programación como un Backtracking, Divide and conquer, y Fuerza Bruta que nos permiten poder calcular una solución posible.
+
+
+
+## Formato de Dataset
 
 Nuestro proyecto recibe archivos con extensión ".txt" los cuales DEBEN seguir el siguiente formato
 
@@ -26,13 +32,19 @@ Donde en la primera linea se especifica el ancho y largo de la plancha, en la se
 Se debe tener en cuenta que nuestra aplicación usa los siguientes modulos.
 
 ```
-conda install matlplotlib
-TODO: MODULOS
+matlplotlib
+tkinter
 ```
 
 ## Ejemplo de funcionamiento
 
-TODO:
+Ejecutar la funcion main() y se abrirá un cuadro de dialogo dónde se deberá ingresar el dataset en formato .txt para poder filtrar la información en este mismo y procesarlo. Posteriormente se muestra el gráfic y se arrojan los resultados en la consola.
+
+Los datasets del 2 a 5 contemplan las diferentes validaciones de datos que tiene nuestra implementación.
+
+## Conclusiones
+
+Si tenemos una extensa cantidad de datos, el algoritmo número 2, que se encuentra en el archivo cut.py, logra solucionar de mejor manera el problema. Por ser más sencillo el primer algoritmo se trata de un O(n) y el segundo con una mejor respuesta nos da un O(n^2). El segundo algoritmo nos da una mejor solución para archivos con pequeños, mientras que el primero puede llegar a ser escalable.
 
 ## Elaborado con
 
