@@ -11,14 +11,7 @@ codes = [
     Path.CLOSEPOLY,
 ]
 
-fig, ax = plt.subplots()
-
-def set_plancha(W,H):
-   ax.set_xlim(-1, W)
-   ax.set_ylim(-1, H)
-
-def add_rectangle(x,y,w,h):
-
+def add_rectangle(x,y,w,h,s,axs):
    verts = [
       (x, y),  # left, bottom
       (x, y+h),  # left, top
@@ -28,16 +21,28 @@ def add_rectangle(x,y,w,h):
    ]
    path = Path(verts, codes)
    patch = patches.PathPatch(path, facecolor='orange',lw=2)
-   ax.add_patch(patch)
+   axs[s].add_patch(patch)
 
-def set_draws(W,H,array):
-   set_plancha(W,H)
+def set_draws(n_planchas,W,H,array):
+   """
+   Se manda el numero de planchas con
+   las dimensiones deseadas y el arreglo
+   de rectangulos a dibujar.
+   La funcion dibujara los rectangulos en sus
+   planchas respectivas
+   """
+   fig, axs = plt.subplots(1,n_planchas)
+
+   for i in range(len(axs)):
+      axs[i].set_plancha(W,H)
+
    for i in range(len(array)):
       x=array[i].x
       y=array[i].y
       w=array[i].w
       h=array[i].h
-      add_rectangle(x,y,w,h)
+      s=array[i].sheet-1
+      add_rectangle(x,y,w,h,s,axs)
 
 def draw():
    plt.show()
