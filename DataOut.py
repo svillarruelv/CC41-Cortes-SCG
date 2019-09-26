@@ -1,9 +1,7 @@
 from Rectangle import Rectangle
 
 def results(order, waste, area, cuts, rectangles):
-    print()
-    print()
-    print("PLanchas: ", order," plancha utilizada")
+    print("Planchas: ", order," plancha utilizada")
     print("Desperdicio: ", waste, "%, Area: ", area, " metros cuadrados")
     print("Cortes: ", cuts)
     print("Plancha ", rectangles[0].sheet)

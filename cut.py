@@ -1,23 +1,22 @@
-import utilCut as uc
 import util as u
 import Canvas as c
 import Rectangle as r
 import Graphics as g
 import DataIn as di
+import utilCut as uc
 import DataOut as do
 
 
-W, H, N, RECTANGLES = di.Read()
-RECTANGLES = u.merge_sort(RECTANGLES)
+# W, H, N, RECTANGLES = di.Read()
+# RECTANGLES = u.merge_sort(RECTANGLES)
+# ORDER = 1
+# CANVAS = c.Canvas(0, 0, W, H, ORDER)
 
-ORDER = 1
-CANVAS = c.Canvas(0, 0, W, H, ORDER)
 canvasnotused = []
 cutted = []
-noncutted = []
 cuts = 0
 
-def cut(N, RECTANGLES, CANVAS, ORDER):
+def cut(W,H,N, RECTANGLES, CANVAS, ORDER):
 
     def divide(canvas, rectangles):
         if (len(rectangles)<1): 
@@ -68,7 +67,7 @@ def cut(N, RECTANGLES, CANVAS, ORDER):
     if RECTANGLES:
         ORDER += 1
         newcanvas = c.Canvas(0,0,W,H,ORDER)
-        cut(len(RECTANGLES), RECTANGLES, newcanvas, ORDER)
+        cut(W,H,len(RECTANGLES), RECTANGLES, newcanvas, ORDER)
         return
 
 
@@ -77,5 +76,3 @@ def cut(N, RECTANGLES, CANVAS, ORDER):
     g.set_draws(ORDER, W, H, cutted)
     g.draw()
 
-
-cut(N, RECTANGLES, CANVAS, ORDER)

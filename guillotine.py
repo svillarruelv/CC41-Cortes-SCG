@@ -2,7 +2,8 @@ import util as u
 import Rectangle as r
 import DataIn as di
 import Graphics as g
-
+import utilCut as uc
+import DataOut as do
 
 """
 r1 = r.Rectangle(0, 0,"A", 40, 10)
@@ -29,9 +30,6 @@ H = 670
 g.set_draws(W,H,rectangles)
 g.draw()
 """
-
-W, H, N, rectangles = di.Read()
-#u.merge_sort(rectangles)
 
 def guillotine(W, H, N, rectangles):
     rectangles = u.merge_sort(rectangles)
@@ -82,9 +80,8 @@ def guillotine(W, H, N, rectangles):
     for i in range(len(noncutted)):
         print(noncutted[i].label)
 
-    #TODO: recursividad con el arreglo noncutted para terminar de acomodar las piezas en los espacios sobrantes
-    g.set_draws(W,H,cutted)
+    
+    waste, area = uc.waste(W, H, noncutted,1)
+    do.results(1, waste, area, len(cutted), cutted)
+    g.set_draws(1,W,H,cutted)
     g.draw()
-
-
-guillotine(W, H, N, rectangles)

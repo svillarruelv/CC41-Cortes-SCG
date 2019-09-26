@@ -29,7 +29,7 @@ def set_draws(n_planchas,W,H,array):
    las dimensiones deseadas y el arreglo
    de rectangulos a dibujar.
    La funcion dibujara los rectangulos en sus
-   planchas respectivas
+   planchas
    """
    fig, axs = plt.subplots(1,n_planchas)
 
