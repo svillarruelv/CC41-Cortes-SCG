@@ -44,7 +44,7 @@ Los datasets del 2 a 5 contemplan las diferentes validaciones de datos que tiene
 
 ## Conclusiones
 
-Si tenemos una extensa cantidad de datos, el algoritmo número 2, que se encuentra en el archivo cut.py, logra solucionar de mejor manera el problema. Por ser más sencillo el primer algoritmo se trata de un O(n) y el segundo con una mejor respuesta nos da un O(n^2). El segundo algoritmo nos da una mejor solución para archivos con pequeños, mientras que el primero puede llegar a ser escalable.
+Si tenemos una extensa cantidad de datos, el algoritmo número 2, que se encuentra en el archivo cut.py, logra solucionar de mejor manera el problema. Por ser más sencillo el primer algoritmo se trata de un O(n) y el segundo con una mejor respuesta nos da un O(n^2). El segundo algoritmo nos da una mejor solución para archivos con una pequeña cantidad de datos, mientras que el primero puede llegar a ser escalable.
 
 ## Elaborado con
 
@@ -57,7 +57,6 @@ Si tenemos una extensa cantidad de datos, el algoritmo número 2, que se encuent
 
 * **Sergio Villarruel** - *Trabajo Inicial* - [SergioVillarruel](https://github.com/SergioVillarruel)
 * **Rodrigo Lozano** - *Trabajo Inicial* - [RalcBK](https://github.com/RalcBK)
-* **Carlos Obispo** - *Trabajo Inicial* - [ZBishopM](https://github.com/ZBishopM)
 
 ## Licencia
 
