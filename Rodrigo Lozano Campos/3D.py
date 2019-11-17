@@ -15,11 +15,11 @@ def read(path):
     prisms = []
     for i in range(4, len(data), 5):
         for j in range(int(data[i])):
-            aux = p.Prism((data[i+1]), (int(data[i+2])), (int(data[i+3])), (int(data[i+4])))
+            aux = p.Prism((data[i+1]), (int(data[i+3])), (int(data[i+4])), (int(data[i+2])))
             prisms.append(aux)
     return w, h, l, len(prisms), prisms
 
-W, H, L, N, _PRISMS = read("Rodrigo Lozano Campos\demo.txt")
+L, W, H, N, _PRISMS = read("Rodrigo Lozano Campos\demo.txt")
 
 
 _PRISMS = u.merge_sort(_PRISMS)
@@ -35,7 +35,7 @@ cutted = []
 cuts = 0
 #print(W, H, L, N, CANVAS, PRISMS)
 
-def tridim(W,H,L,N, _PRISMS, _CANVAS, ORDER):
+def tridim(W,H,L,N, _PRISMS, _CANVAS, ORDER, cutType):
 
     def divide(canvas, prisms):
         if (len(prisms)<1): 
@@ -53,13 +53,55 @@ def tridim(W,H,L,N, _PRISMS, _CANVAS, ORDER):
                 prisms[j].zz = prisms[j].z+prisms[j].l
                 prisms[j].sheet = canvas.order
 
-                #Corte inferior
-                c1 = c.Canvas(prisms[j].xx, prisms[j].y, prisms[j].z,
-                canvas.w-prisms[j].w, canvas.h, prisms[j].l, ORDER)
-                c2 = c.Canvas(prisms[j].x, prisms[j].yy, prisms[j].z,
-                prisms[j].w, canvas.h-prisms[j].h, prisms[j].l, ORDER)
-                c3 = c.Canvas(prisms[j].x, prisms[j].y, prisms[j].zz,
-                canvas.w, canvas.h, canvas.l-prisms[j].l, ORDER)
+                #Cortes1
+                if cutType ==1:
+                    c1 = c.Canvas(prisms[j].xx, prisms[j].y, prisms[j].z,
+                    canvas.w-prisms[j].w, canvas.h, prisms[j].l, ORDER)
+                    c2 = c.Canvas(prisms[j].x, prisms[j].yy, prisms[j].z,
+                    prisms[j].w, canvas.h-prisms[j].h, prisms[j].l, ORDER)
+                    c3 = c.Canvas(prisms[j].x, prisms[j].y, prisms[j].zz,
+                    canvas.w, canvas.h, canvas.l-prisms[j].l, ORDER)
+                elif cutType == 2:
+                    #Cortes2
+                    c1 = c.Canvas(prisms[j].xx, prisms[j].y, prisms[j].z,
+                    canvas.w-prisms[j].w, prisms[j].h, prisms[j].l, ORDER)
+                    c2 = c.Canvas(prisms[j].x, prisms[j].yy, prisms[j].z,
+                    canvas.w, canvas.h-prisms[j].h, prisms[j].l, ORDER)
+                    c3 = c.Canvas(prisms[j].x, prisms[j].y, prisms[j].zz,
+                    canvas.w, canvas.h, canvas.l-prisms[j].l, ORDER)
+                elif cutType == 3:
+                    #Cortes3
+                    c1 = c.Canvas(prisms[j].xx, prisms[j].y, prisms[j].z,
+                    canvas.w-prisms[j].w, canvas.h, canvas.l, ORDER)
+                    c2 = c.Canvas(prisms[j].x, prisms[j].yy, prisms[j].z,
+                    prisms[j].w, canvas.h-prisms[j].h, prisms[j].l, ORDER)
+                    c3 = c.Canvas(prisms[j].x, prisms[j].y, prisms[j].zz,
+                    prisms[j].w, canvas.h, canvas.l-prisms[j].l, ORDER)
+                elif cutType == 4:
+                    #Cortes4
+                    c1 = c.Canvas(prisms[j].xx, prisms[j].y, prisms[j].z,
+                    canvas.w-prisms[j].w, prisms[j].h, prisms[j].l, ORDER)
+                    c2 = c.Canvas(prisms[j].x, prisms[j].yy, prisms[j].z,
+                    canvas.w, canvas.h-prisms[j].h, canvas.l, ORDER)
+                    c3 = c.Canvas(prisms[j].x, prisms[j].y, prisms[j].zz,
+                    canvas.w, prisms[j].h, canvas.l-prisms[j].l, ORDER)
+                elif cutType == 5:
+                    #Cortes5
+                    c1 = c.Canvas(prisms[j].xx, prisms[j].y, prisms[j].z,
+                    canvas.w-prisms[j].w, canvas.h, canvas.l, ORDER)
+                    c2 = c.Canvas(prisms[j].x, prisms[j].yy, prisms[j].z,
+                    prisms[j].w, canvas.h-prisms[j].h, canvas.l, ORDER)
+                    c3 = c.Canvas(prisms[j].x, prisms[j].y, prisms[j].zz,
+                    prisms[j].w, prisms[j].h, canvas.l-prisms[j].l, ORDER)
+                elif cutType == 6:
+                    #Cortes6
+                    c1 = c.Canvas(prisms[j].xx, prisms[j].y, prisms[j].z,
+                    canvas.w-prisms[j].w, prisms[j].h, canvas.l, ORDER)
+                    c2 = c.Canvas(prisms[j].x, prisms[j].yy, prisms[j].z,
+                    canvas.w, canvas.h-prisms[j].h, canvas.l, ORDER)
+                    c3 = c.Canvas(prisms[j].x, prisms[j].y, prisms[j].zz,
+                    prisms[j].w, prisms[j].h, canvas.l-prisms[j].l, ORDER)
+
 
                 if not (prisms[j] in cutted):
                     cutted.append(prisms[j])
@@ -75,22 +117,18 @@ def tridim(W,H,L,N, _PRISMS, _CANVAS, ORDER):
 
     divide(_CANVAS, _PRISMS)
 
-    #TODO: check this
     if _PRISMS:
-        #tienen que ser de ese canvas
         u.extra(W, H, L, canvasnotused, _PRISMS, cutted, ORDER)
 
     if _PRISMS:
         ORDER += 1
         newcanvas = c.Canvas(0,0,0,W,H,L,ORDER)
-        tridim(W,H,L,len(_PRISMS), _PRISMS, newcanvas, ORDER)
+        tridim(W,H,L,len(_PRISMS), _PRISMS, newcanvas, ORDER, cutType)
         return
 
-
-    #TODO: make this
     waste, volume, totalVolume = u.waste(W, H, L, canvasnotused, ORDER)
     do.results(ORDER, waste, volume, totalVolume, cuts, cutted)
     #g.set_draws(ORDER, W, H, cutted)
     #g.draw()
 
-tridim(W, H, L, N, _PRISMS, _CANVAS, ORDER)
+tridim(W, H, L, N, _PRISMS, _CANVAS, ORDER, 6)

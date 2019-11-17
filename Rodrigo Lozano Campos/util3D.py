@@ -16,7 +16,7 @@ def waste(w, h, l, canvasnotused, order):
 
 
 def fitin(canvas, prism):
-    if (prism.w <= canvas.w+2 and prism.h <= canvas.h+2 and prism.l <= canvas.l+2):
+    if (prism.w <= canvas.w and prism.h <= canvas.h and prism.l <= canvas.l):
         return True, prism
     else:
         aux = prism.w
@@ -96,86 +96,113 @@ def extra(W, H, L, canvases, prisms, cutted, order):
             r.xx = r.x + r.w
             r.yy = r.y + r.h
             r.zz = r.z + r.l
-            #TODO: hay que ver si entra en todo el canvas volteado
-            if not (borders(r, W, H, L)):
+            
+            if (borders(r, W, H, L)):
+                aux = r.w
+                r.w = r.h
+                r.h = aux
+                r.orientation = 2
+                if (borders(r, W, H, L)):
+                    aux = r.l
+                    r.l = r.h
+                    r.h = aux
+                    r.orientation = 4
+                    if (borders(r, W, H, L)):
+                        aux = r.w
+                        r.w = r.h
+                        r.h = aux
+                        r.orientation = 3
+                        if (borders(r, W, H, L)):
+                            aux = r.l
+                            r.l = r.h
+                            r.h = aux
+                            r.orientation = 5
+                            if (borders(r, W, H, L)):
+                                aux = r.w
+                                r.w = r.h
+                                r.h = aux
+                                r.orientation = 6
+                                if (borders(r, W, H, L)):
+                                    break
+
+            flag = True
+            for k in range (len(cutted)):
+                if (cutted[k].sheet == order):    
+                    if (collission(r,cutted[k])):
+                        flag = False
+                        break
+            if not flag:
                 flag = True
+                aux = r.w
+                r.w = r.h
+                r.h = aux
+                r.orientation = 2
                 for k in range (len(cutted)):
                     if (cutted[k].sheet == order):    
                         if (collission(r,cutted[k])):
                             flag = False
                             break
-                if not flag:
-                    flag = True
-                    aux = r.w
-                    r.w = r.h
-                    r.h = aux
-                    r.orientation = 2
-                    for k in range (len(cutted)):
-                        if (cutted[k].sheet == order):    
-                            if (collission(r,cutted[k])):
-                                flag = False
-                                break
-                if not flag:
-                    flag = True
-                    aux = r.l
-                    r.l = r.h
-                    r.h = aux
-                    r.orientation = 4
-                    for k in range (len(cutted)):
-                        if (cutted[k].sheet == order):    
-                            if (collission(r,cutted[k])):
-                                flag = False
-                                break
-                if not flag:
-                    flag = True
-                    aux = r.w
-                    r.w = r.h
-                    r.h = aux
-                    r.orientation = 3
-                    for k in range (len(cutted)):
-                        if (cutted[k].sheet == order):    
-                            if (collission(r,cutted[k])):
-                                flag = False
-                                break
-                if not flag:
-                    flag = True
-                    aux = r.l
-                    r.l = r.h
-                    r.h = aux
-                    r.orientation = 5
-                    for k in range (len(cutted)):
-                        if (cutted[k].sheet == order):    
-                            if (collission(r,cutted[k])):
-                                flag = False
-                                break
-                if not flag:
-                    flag = True
-                    aux = r.w
-                    r.w = r.h
-                    r.h = aux
-                    r.orientation = 6
-                    for k in range (len(cutted)):
-                        if (cutted[k].sheet == order):    
-                            if (collission(r,cutted[k])):
-                                flag = False
-                                break
-                if (flag):
-                    r.sheet=order
-                    cutted.append(r)
-                    """
+            if not flag:
+                flag = True
+                aux = r.l
+                r.l = r.h
+                r.h = aux
+                r.orientation = 4
+                for k in range (len(cutted)):
+                    if (cutted[k].sheet == order):    
+                        if (collission(r,cutted[k])):
+                            flag = False
+                            break
+            if not flag:
+                flag = True
+                aux = r.w
+                r.w = r.h
+                r.h = aux
+                r.orientation = 3
+                for k in range (len(cutted)):
+                    if (cutted[k].sheet == order):    
+                        if (collission(r,cutted[k])):
+                            flag = False
+                            break
+            if not flag:
+                flag = True
+                aux = r.l
+                r.l = r.h
+                r.h = aux
+                r.orientation = 5
+                for k in range (len(cutted)):
+                    if (cutted[k].sheet == order):    
+                        if (collission(r,cutted[k])):
+                            flag = False
+                            break
+            if not flag:
+                flag = True
+                aux = r.w
+                r.w = r.h
+                r.h = aux
+                r.orientation = 6
+                for k in range (len(cutted)):
+                    if (cutted[k].sheet == order):    
+                        if (collission(r,cutted[k])):
+                            flag = False
+                            aux = r.l
+                            r.l = r.h
+                            r.h = aux
+                            r.orientation = 1
+                            break
+            if (flag):
+                r.sheet=order
+                cutted.append(r)
+                """
                     aux = (canvases[i].w*canvases[i].h)-(prisms[j].w*prisms[j].h)
                     if (aux>0):
                         canvases[i].w = round(math.sqrt(aux), 1)
                         canvases[i].h = round(math.sqrt(aux), 1)
                     canvases[i].x=r.x
                     canvases[i].y=r.yy
-                    """
-                    prisms.pop(j)
-                    break
-            else:
-                #TODO: revisar esto
+                """
                 prisms.pop(j)
-                print("El prisma ", r.label, "no se puede ingresar")
+                break
 
 
 ###################################################################################################
@@ -247,7 +274,6 @@ def fit(rectangle, actualx, actualy, W, H):
     rectangle.orientation = "N"
     
     return 3, rectangle
-
 
 
 
