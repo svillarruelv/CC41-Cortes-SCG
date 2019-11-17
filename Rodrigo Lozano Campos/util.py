@@ -69,4 +69,4 @@ def fit(rectangle, actualx, actualy, W, H):
     rectangle.orientation = "N"
     
     return 3, rectangle
-
+    

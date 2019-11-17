@@ -9,7 +9,7 @@ class Prism:
         self.h = h
         self.l = l
         self.volume = w*h*l
-        self.orientation = "N"
+        self.orientation = 1
         self.sheet = 1
         self.xx = 0
         self.yy = 0
