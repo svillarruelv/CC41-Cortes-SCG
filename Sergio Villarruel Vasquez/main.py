@@ -47,37 +47,30 @@ for prism in prisms:
             for prism2 in rooms[r_index].set:
                 if collition(prism,prism2):
                     prism.x = prism2.x + prism2.l
-                    print("HOLA")
                 # if collition(prism,prism2) or prism.x+prism.l > L:
                 if prism.x+prism.l > L:
                     prism.x = prism2.x
                     prism.y = prism2.y + prism2.w
-                    print("HOLAA")
                 # if collition(prism,prism2) or prism.y+prism.w > W:
                 if prism.y+prism.w > W:
                     prism.x = prism2.x
                     prism.y = prism2.y
                     prism.z = prism2.z + prism2.h
-                    print("HOLAAA")
             if prism.x + prism.l <= rooms[r_index].l and prism.y + prism.w <= rooms[r_index].w and prism.z + prism.h <= rooms[r_index].h:
                 prism.room = r_index+1
                 rooms[r_index].volumeused += prism.volume
                 rooms[r_index].set.append(prism)
                 rotation=7
-                print("PUDE ENTRAR")
                 break
             if rotation == 6:
                     r_index += 1
                     rotation = 1
                     rooms.append(Room(W,H,L,r_index+1))
-                    print("HOLAAAA")
-            print("PALSIGUIENTE")
             rotation += 1
 totalvol=0
 totalvolwasted=0
 for room in rooms:
     totalvol += room.volume
-    print(room.volumeused)
     totalvolwasted += room.volumeused
 
 results(len(rooms),totalvolwasted,totalvol,prisms)
