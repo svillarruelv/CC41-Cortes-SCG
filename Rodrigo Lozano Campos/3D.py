@@ -20,7 +20,7 @@ def read(path):
             prisms.append(aux)
     return w, h, l, len(prisms), prisms
 
-L, W, H, N, _PRISMS = read("Rodrigo Lozano Campos\demo.txt")
+L, W, H, N, _PRISMS = read("Rodrigo Lozano Campos\demoBig.txt")
 
 
 _PRISMS = u.merge_sort(_PRISMS)
@@ -28,7 +28,7 @@ _PRISMS = u.merge_sort(_PRISMS)
 #for i in range(len(_PRISMS)):
 #    print(_PRISMS[i].w,_PRISMS[i].h,_PRISMS[i].l,_PRISMS[i].label,_PRISMS[i].volume)
 #print(W, H, L)
-
+cuts = 0
 
 ORDER = 1
 _CANVAS = c.Canvas(0, 0, 0, W, H, L, ORDER)

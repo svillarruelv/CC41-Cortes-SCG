@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -32,7 +31,8 @@ def graph(order, _prisms):
             axs[i].set_title('Contenedor '+str(i+1))    
     else:
         ax1 = fig.add_subplot(111, projection='3d')
-        ax1.bar3d(xpos, ypos, zpos, dx, dy, dz, color = '#FFE714C0', shade=True)
+        x, y, z, dx, dy, dz = sets(1, _prisms)
+        ax1.bar3d(x, y, z, dx, dy, dz, color = '#FFE714C0', shade=True)
         ax1.set_title('Contenedor 1')
 
     plt.show()
