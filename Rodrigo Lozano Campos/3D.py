@@ -28,7 +28,7 @@ _PRISMS = u.merge_sort(_PRISMS)
 #for i in range(len(_PRISMS)):
 #    print(_PRISMS[i].w,_PRISMS[i].h,_PRISMS[i].l,_PRISMS[i].label,_PRISMS[i].volume)
 #print(W, H, L)
-
+cuts = 0
 
 ORDER = 1
 _CANVAS = c.Canvas(0, 0, 0, W, H, L, ORDER)
