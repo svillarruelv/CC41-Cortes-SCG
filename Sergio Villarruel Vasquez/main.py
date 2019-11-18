@@ -2,6 +2,7 @@ from DataIn import *
 from DataOut import *
 from prism import Prism
 from room import Room
+import graphics3D as g
 
 def collition(p1,p2):
     
@@ -75,3 +76,5 @@ for room in rooms:
 
 results(len(rooms),totalvolwasted,totalvol,prisms)
 
+print(len(rooms))
+g.graph(len(rooms),prisms)
