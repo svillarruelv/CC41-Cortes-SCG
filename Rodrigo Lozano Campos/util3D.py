@@ -246,34 +246,3 @@ def merge_sort(input_list):
         left, right = split(input_list)
 
         return merge_sorted_lists(merge_sort(left), merge_sort(right))
-
-#No se usa
-def fit(rectangle, actualx, actualy, W, H):
-    if (rectangle.w + actualx.xx <= W):
-        if (rectangle.h <= H):
-            return 1, rectangle
-    elif(rectangle.h + actualy.yy <= H):
-        if (rectangle.w <= W):
-            return 2, rectangle
-    
-    w_ = rectangle.w
-    rectangle.w = rectangle.h
-    rectangle.h = w_
-    rectangle.orientation = "G"
-
-    if (rectangle.w + actualx.xx <= W):
-        if (rectangle.h <= H):
-            return 1, rectangle
-    elif(rectangle.h + actualy.yy <= H):
-        if (rectangle.w <= W):
-            return 2, rectangle
-
-    w_ = rectangle.w
-    rectangle.w = rectangle.h
-    rectangle.h = w_
-    rectangle.orientation = "N"
-    
-    return 3, rectangle
-
-
-

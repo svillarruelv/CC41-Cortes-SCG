@@ -2,6 +2,7 @@ import canvas as c
 import prism as p
 import util3D as u
 import dataOut3D as do
+import graphics3D as g
 
 def read(path):
     archivo = open(path, 'r')
@@ -23,16 +24,16 @@ L, W, H, N, _PRISMS = read("Rodrigo Lozano Campos\demo.txt")
 
 
 _PRISMS = u.merge_sort(_PRISMS)
-for i in range(len(_PRISMS)):
-    print(_PRISMS[i].w,_PRISMS[i].h,_PRISMS[i].l,_PRISMS[i].label,_PRISMS[i].volume)
-print(W, H, L)
+
+#for i in range(len(_PRISMS)):
+#    print(_PRISMS[i].w,_PRISMS[i].h,_PRISMS[i].l,_PRISMS[i].label,_PRISMS[i].volume)
+#print(W, H, L)
 
 
 ORDER = 1
 _CANVAS = c.Canvas(0, 0, 0, W, H, L, ORDER)
 canvasnotused = []
 cutted = []
-cuts = 0
 #print(W, H, L, N, CANVAS, PRISMS)
 
 def tridim(W,H,L,N, _PRISMS, _CANVAS, ORDER, cutType):
@@ -128,7 +129,6 @@ def tridim(W,H,L,N, _PRISMS, _CANVAS, ORDER, cutType):
 
     waste, volume, totalVolume = u.waste(W, H, L, canvasnotused, ORDER)
     do.results(ORDER, waste, volume, totalVolume, cuts, cutted)
-    #g.set_draws(ORDER, W, H, cutted)
-    #g.draw()
+    g.graph(ORDER, cutted)
 
 tridim(W, H, L, N, _PRISMS, _CANVAS, ORDER, 6)
