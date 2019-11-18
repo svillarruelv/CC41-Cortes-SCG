@@ -20,7 +20,7 @@ def read(path):
             prisms.append(aux)
     return w, h, l, len(prisms), prisms
 
-L, W, H, N, _PRISMS = read("Rodrigo Lozano Campos\demo5.txt")
+L, W, H, N, _PRISMS = read("Rodrigo Lozano Campos\demoBig.txt")
 
 
 _PRISMS = u.merge_sort(_PRISMS)
